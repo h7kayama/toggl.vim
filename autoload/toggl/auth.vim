@@ -5,7 +5,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:V = vital#of("vital")
+let s:V = vital#toggl#new()
 let s:http = s:V.import("Web.HTTP")
 let s:json = s:V.import("Web.JSON")
 
