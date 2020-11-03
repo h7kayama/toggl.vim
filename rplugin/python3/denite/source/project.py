@@ -3,7 +3,7 @@
 from .base import Base
 
 BUFFER_HIGHLIGHT_SYNTAX = [
-    {'name': 'Client', 'link': 'Comment', 're': r'(.\+)'}
+    {'name': 'Client', 'link': 'Comment', 're': r'\[.\+\]'}
 ]
 
 class Source(Base):
@@ -33,7 +33,7 @@ class Source(Base):
         return [self._convert(project, context) for project in projects]
 
     def _convert(self, info, context):
-        client_name = '({})'.format(context['__clients'][info.get('cid')]) if info.get('cid') else ''
+        client_name = '[{}]'.format(context['__clients'][info.get('cid')]) if info.get('cid') else ''
         abbr = '{} {}'.format(info['name'], client_name)
         return {
                 'word': info['name'],
