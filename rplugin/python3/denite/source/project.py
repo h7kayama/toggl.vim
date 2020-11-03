@@ -3,7 +3,7 @@
 from .base import Base
 
 BUFFER_HIGHLIGHT_SYNTAX = [
-    {'name': 'Client', 'link': 'Comment',     're': r'(.\+)'}
+    {'name': 'Client', 'link': 'Comment', 're': r'(.\+)'}
 ]
 
 class Source(Base):

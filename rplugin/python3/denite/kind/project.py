@@ -10,6 +10,10 @@ class Kind(Base):
         self.default_action = 'set_current'
 
     def action_set_current(self, context):
+        current_task = self.vim.call('toggl#time_entries#get_running')
+        if current_task == 0:
+            self.vim.command(f'echo "No task is running"')
+            return
         for target in context['targets']:
             project = target['action__project']
             self.vim.call('toggl#update_current', {'pid': project['id']})
