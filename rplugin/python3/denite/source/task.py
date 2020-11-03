@@ -18,5 +18,5 @@ class Source(Base):
         return {
                 'word': info['description'],
                 'abbr': abbr,
-                'action__path': info
+                'action__task': info
                 }

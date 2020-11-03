@@ -11,5 +11,5 @@ class Kind(Base):
 
     def action_set_current(self, context):
         for target in context['targets']:
-            project = target['action__path']
+            project = target['action__project']
             self.vim.call('toggl#update_current', {'pid': project['id']})

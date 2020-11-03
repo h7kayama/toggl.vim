@@ -97,6 +97,11 @@ function! toggl#tags() abort
   return toggl#workspaces#tags(wid)
 endfunction
 
+function! toggl#clients() abort
+  let wid = s:get_wid()
+  return toggl#workspaces#clients(wid)
+endfunction
+
 function! toggl#task_cache_update() abort
   let now = toggl#time_entries#get_running()
   if now is 0

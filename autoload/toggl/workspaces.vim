@@ -20,5 +20,9 @@ function! toggl#workspaces#tags(workspace_id) abort
   return toggl#auth#get("workspaces/" . a:workspace_id . "/tags", {})
 endfunction
 
+function! toggl#workspaces#clients(workspace_id) abort
+  return toggl#auth#get("workspaces/" . a:workspace_id . "/clients", {})
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

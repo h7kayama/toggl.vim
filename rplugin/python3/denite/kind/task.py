@@ -11,6 +11,6 @@ class Kind(Base):
 
     def action_restart(self, context):
         for target in context['targets']:
-            task = target['action__path']
+            task = target['action__task']
             self.vim.call('toggl#time_entries#start', task['description'], task['pid'], [])
             self.vim.call('toggl#task_cache_update')

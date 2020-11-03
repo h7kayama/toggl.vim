@@ -9,14 +9,21 @@ class Source(Base):
         self.name = 'toggl/project'
         self.kind = 'toggl/project'
 
+    def on_init(self, context):
+        clients = self.vim.call('toggl#clients')
+        client_ids = map(lambda c: c['id'], clients)
+        client_names = map(lambda c: c['name'], clients)
+        context['__clients'] = dict(zip(client_ids, client_names))
+
     def gather_candidates(self, context):
         projects = self.vim.call('toggl#projects')
-        return [self._convert(project) for project in projects]
+        return [self._convert(project, context) for project in projects]
 
-    def _convert(self, info):
-        abbr = '[%d] %s' % (info['id'], info['name'])
+    def _convert(self, info, context):
+        client_name = context['__clients'][info.get('cid')] if info.get('cid') else ''
+        abbr = '%s %s' % (info['name'], client_name)
         return {
                 'word': info['name'],
                 'abbr': abbr,
-                'action__path': info
+                'action__project': info
                 }
